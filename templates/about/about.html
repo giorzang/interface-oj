@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+  {% if request.organization %}
+    {% cache 3600 'organization_html' request.organization.id MATH_ENGINE %}
+      {{ request.organization.about|markdown|reference|str|safe }}
+    {% endcache %}
+  {% else %}
+    <h4>
+      <a target="_blank" href="">THQNOJ (Tin học Quảng Ninh Online Judge)</a> là một trang web chấm bài tự động được triển khai dựa trên nền tảng mã nguồn mở của <a target="_blank" href="https://github.com/LQDJudge">LQDOJ</a>. Được xây dựng với mục đích ban đầu là tạo ra một môi trường học tập cho học sinh đội tuyển Tin <a target="_blank" href="https://tranphuquangninh.com/">trường THPT Trần Phú  (Tỉnh Quảng Ninh)</a>, hiện nay THQNOJ đã cho phép đăng ký tự do để trở thành một sân chơi rộng mở cho toàn bộ cộng đồng học sinh yêu Tin học trong và ngoài tỉnh Quảng Ninh. Trang web tổng hợp các bài tập hay, chất lượng từ các nguồn khác nhau nhằm phục vụ cho các bạn mới bắt đầu để ôn luyện thi HSG Tỉnh. Ngoài ra còn có các contest để xếp loại khả năng (rating) giúp các bạn có thêm động lực cạnh tranh và khí thế phấn đấu rèn luyện nâng cao trình độ lập trình. Các bạn có thể tham khảo mã nguồn của trang web tại <a target="_blank" href="https://github.com/giorzang/THQNOJ">Github repo chính thức</a>. Mọi ý kiến thắc mắc xin gửi về:
+      <ul>
+        <li>Thầy <a target="_blank" href="https://www.facebook.com/thaylong.tp">Nguyễn Hoàng Long</a> (handle: <a target="_blank" href="../user/F0">F0</a>), giáo viên Tin học trường THPT Trần Phú</li>
+        <li><a target="_blank" href="https://www.facebook.com/giorzang">Vũ Trường Giang</a> (handle: <a target="_blank" href="../user/giorzang">giorzang</a>), cựu học sinh đội tuyển Tin học, email: <a href="mailto:giang213205@gmail.com">giang213205@gmail.com</a></li>
+      </ul>
+    </h4>
+  {% endif %}
+{% endblock %}
